@@ -25,11 +25,27 @@ const {
 // We want to perform checks on that email and
 // password to arrive at one of the following messages
 // for the user:
+const email = getInput(1);
 
+const password = getInput(2);
 // 1. If the email belongs to one of our registered
 // users AND the password matches that user, tell them
 // that they are logged in.
-
+if (isRegisteredUser (email) && passwordMatches (email, password)){
+  console.log ("you have successfully logged in")
+}
+if(isValidEmail (email) && isRegisteredUser(email) && !passwordMatches(email, password)){
+  console.log ("your password is incorrect");
+}
+if (!isRegisteredUser (email) && isValidEmail (email) && passwordMatches (email, password)){
+  console.log ("you are signed up");
+}
+if (!isRegisteredUser (email) && !isValidEmail (email)){
+  console.log ("your email is not valid. please enter a valid email.");
+}
+if (!isRegisteredUser (email) && !passwordMatches (email, password)){
+  console.log ("your password is not valid")
+}
 // 2. If the email belongs to one of our registered
 // users but the password does not match that user,
 // tell them their password is incorrect.
